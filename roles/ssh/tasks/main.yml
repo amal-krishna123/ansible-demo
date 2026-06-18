@@ -1,0 +1,6 @@
+---
+- name: Authorize local SSH public key for ec2-user
+  authorized_key:
+    user: ec2-user
+    state: present
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3syJ8FjrlnPgyYnPr+KRhtB8dU63fZ84sdhv3KKQNB1+Y6RSjnNmaIMhz/PUd+WFbBy3SsCG3MJMlRfzs/pkF+dvqKqCauKd5gSmUbsI8VgHagOviQb+B2pnwSp3r2k9tie8RsqzpjZv5Kbiuvvn+VFpcFOIph39YbPoRC1ON+l3MhgJ1CwLEyjDhCf/hIsBj7SfcPc4kcYvJrNTdeqN37oO3g+ZGKWApEbVixOKOs3TigGmD/oVesfKfbxBxNXBjmPJouxUqKGD4Xh6OrdeqsNCFo83tg95VNB+dsyZgndBqjoxKV6IfMt7GBDI+et3aiSuWsLKM0qHl38WeYBKT"

@@ -1,0 +1,14 @@
+---
+- name: Configure Amazon Linux 2 Web Server
+  hosts: webservers
+  become: yes
+
+  roles:
+    - role: base
+      tags: [ 'base' ]
+    - role: nginx
+      tags: [ 'nginx' ]
+    - role: app
+      tags: [ 'app' ]
+    - role: ssh
+      tags: [ 'ssh' ]

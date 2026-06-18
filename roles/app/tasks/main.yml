@@ -1,0 +1,33 @@
+---
+- name: Remove the existing Nginx HTML directory completely
+  file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Recreate an empty Nginx HTML directory
+  file:
+    path: /usr/share/nginx/html
+    state: directory
+    mode: '0755'
+    owner: nginx
+    group: nginx
+
+- name: Configure Git to trust the Nginx HTML directory
+  command: git config --global --add safe.directory /usr/share/nginx/html
+
+- name: Deploy static website from GitHub directly to Nginx web root
+  git:
+    repo: 'https://github.com/amal-krishna123/ansible-demo.git'
+    dest: /usr/share/nginx/html/
+    version: main
+    clone: yes
+    force: yes
+
+- name: Ensure Nginx can read all deployed web files
+  file:
+    path: /usr/share/nginx/html
+    state: directory
+    recurse: yes
+    owner: nginx
+    group: nginx
+    mode: 'o+r'
