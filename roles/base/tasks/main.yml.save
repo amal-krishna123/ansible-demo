@@ -1,0 +1,30 @@
+---
+- name: Upgrade all packages to the latest version
+  yum:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: Install utility packages (curl, git, unzip)
+  yum:
+    name:
+      - curl
+      - git
+      - unzip
+    state: present
+
+- name: Install EPEL repository (Required for fail2ban on Amazon Linux)
+  amazon_linux_extras:
+    name: epel
+    state: present
+
+- name: Install fail2ban from EPEL
+  yum:
+    name: fail2ban
+    state: present
+
+- name: Ensure fail2ban is started and enabled
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
